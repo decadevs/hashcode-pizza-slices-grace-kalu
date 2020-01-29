@@ -35,8 +35,6 @@ public class MorePizza {
                             sum = add;
                             indicesOfTypes.add(j);
                         }
-                    } else{
-                        continue;
                     }
 //                    if((Integer.parseInt(slices[i]) + Integer.parseInt(slices[j])) == maxSlices ) {
 //                        sum += Integer.parseInt(slices[i]) + Integer.parseInt(slices[j]);
@@ -55,14 +53,13 @@ public class MorePizza {
                     stringBuilder.append(index);
                     stringBuilder.append(" ");
                 });
-                Path newPath = Paths.get("src/com/codeWithMerald/pizza.txt");
-                OutputStream outputStream = Files.newOutputStream(newPath);
+                Path pizza = Paths.get("src/com/codeWithMerald/pizza.txt");
+                OutputStream outputStream = Files.newOutputStream(pizza);
                 try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {
                     String noOfSlice = String.valueOf(indicesOfTypes.size());
                     writer.write(noOfSlice);
                     writer.write('\n');
                     writer.write(String.valueOf(stringBuilder));
-                    writer.flush();
                 }
             }
             System.out.println(sum + "points");
