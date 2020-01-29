@@ -22,13 +22,20 @@ public class MorePizza {
             int maxSlices = Integer.parseInt(max[0]);
 
             int sum = 0;
+            int add = 0;
             ArrayList<Integer> indicesOfTypes = new ArrayList<>();
-            for(int i = slices.length-1; i>= 0; i--){
-//                for (int j = slices.length - 2; i >= 0; i--) {
+            for(int i = slices.length-1; i >= 0; i--){
+              for (int j = slices.length - 2; i >= 0; i--) {
                     if (sum + Integer.parseInt(slices[i]) <= maxSlices) {
                         sum += Integer.parseInt(slices[i]);
                         indicesOfTypes.add(i);
-                    } else {
+                    } else if  (add + Integer.parseInt(slices[j]) <= maxSlices) {
+                        add += Integer.parseInt(slices[j]);
+                        if(add > sum){
+                            sum = add;
+                            indicesOfTypes.add(j);
+                        }
+                    } else{
                         continue;
                     }
 //                    if((Integer.parseInt(slices[i]) + Integer.parseInt(slices[j])) == maxSlices ) {
@@ -41,7 +48,7 @@ public class MorePizza {
 //                    else {
 //                        continue;
 //                    }
-//                }
+              }
                 Collections.reverse(indicesOfTypes);
                 StringBuilder stringBuilder = new StringBuilder();
                 indicesOfTypes.forEach(index -> {
